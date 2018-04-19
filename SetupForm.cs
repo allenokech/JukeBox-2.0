@@ -213,7 +213,63 @@ namespace JukeBox
             }
             return trigger;
         }
-        
+        // Initiates default value //
+        private void InitiateDValue()
+        {
+            Int_SetupNumberofGenre = 1;
+            if (Int_SetupNumberofGenre > 1)
+            {
+                Setup_Media_Library = new ListBox[Int_SetupNumberofGenre];
+            }
+            Setup_Media_Library[1] = new ListBox();
+            Setup_Media_Library[1].Items.Add("Genrel");
+        }
+        // Loads the track files into the Media text files // 
+        private bool Load_Media_Lists()
+        {
+            bool trigger;
+            if (!File.Exists(string.Concat(Setup_StrApplicationMediaPath, "\\Media\\Media.txt")))
+            {
+                trigger = false;
+            }
+            else
+            {
+                try
+                { // Reads the media textbox containing track information //
+                    StreamReader TextFileReader = new StreamReader(string.Concat(Setup_StrApplicationMediaPath, "\\Media\\Media.txt"));
+                    try
+                    { 
+                        Int_SetupNumberofGenre = Convert.ToInt32(TextFileReader.ReadLine());
+                        Setup_Media_Library = new ListBox[Int_SetupNumberofGenre];
+                        for (int i = 0; i < Int_SetupNumberofGenre; i++)
+                        {
+                            Setup_Media_Library[i] = new ListBox();
+                            int num = Convert.ToInt32(TextFileReader.ReadLine());
+                            Setup_Media_Library[i].Items.Add(TextFileReader.ReadLine());
+                            for (int j = 0; j < num; j++)
+                            {
+                                string str = TextFileReader.ReadLine();
+                                Setup_Media_Library[i].Items.Add(str);
+                            }
+                        }
+                        TextFileReader.Close();
+                    }
+                    finally
+                    {
+                        if (TextFileReader != null)
+                        {
+                            ((IDisposable)TextFileReader).Dispose();
+                        }
+                    }
+                    trigger = true;
+                }
+                catch (Exception exception)
+                {
+                    trigger = false;
+                }
+            }
+            return trigger;
+        }
         
         
         
