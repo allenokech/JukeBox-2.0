@@ -14,6 +14,14 @@ using WMPLib;
 namespace JukeBox
 {
     public partial class Jukebox : Form
+    {
+    public string StrApplicationMediaPath = Directory.GetCurrentDirectory();
+
+        public int Int_NumberofGenre;
+
+        private ListBox[] Media_Library;
+
+        bool IsPlaying = false;
     
     public Jukebox()
         {
