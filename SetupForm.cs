@@ -98,3 +98,15 @@ namespace JukeBox
                 lst_Imported.Items.RemoveAt(lst_Imported.SelectedIndex);
             }
         }
+        // This saves the selection// 
+        private void btn_OK_Click(object sender, EventArgs e)
+        {
+            if (RSave)
+            {
+                if (!Save_Media_List())
+                {
+                    MessageBox.Show("Could not Save the new configuration!");
+                }
+            }
+            Close();
+        }
