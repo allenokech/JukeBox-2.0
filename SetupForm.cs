@@ -136,3 +136,28 @@ namespace JukeBox
                 btn_DeleteGenre.Enabled = true;
             }
         }
+        
+        // Adds to genre list//
+        private void AddToGList(int DiscGenre)
+        {
+            lst_PresentGenreTracks.Items.Clear();
+            txt_GenreTitle.Text = Setup_Media_Library[DiscGenre - 1].Items[0].ToString();
+            for (int i = 1; i < Setup_Media_Library[DiscGenre - 1].Items.Count; i++)
+            {
+                lst_PresentGenreTracks.Items.Add(Setup_Media_Library[DiscGenre - 1].Items[i].ToString());
+            }
+        }
+
+        // Enables the user to deleted tracks from selcted genre //
+        private void btn_DeleteFromGenre_Click(object sender, EventArgs e)
+        {
+            RSave = true;
+            int selectedIndex = lst_PresentGenreTracks.SelectedIndex;
+            if (lst_PresentGenreTracks.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must Select an item to Delete.");
+            }
+        }
+        
+        
+        
