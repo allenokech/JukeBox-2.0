@@ -78,3 +78,23 @@ namespace JukeBox
                 }
             }
         }
+        // Moves selected tracks to specific genres// 
+        private void btn_Move_To_Genre_Click(object sender, EventArgs e)
+        {// Prompts you to select a track before moving forward// 
+            RSave = true;
+            if (lst_Imported.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must Select an item to Move.");
+            }
+            else
+            { 
+                lst_PresentGenreTracks.Items.Add(lst_Imported.Items[lst_Imported.SelectedIndex]);
+                Setup_Media_Library[Int_ShowGenreNumber].Items.Add(lst_Imported.Items[lst_Imported.SelectedIndex]);
+                if (!File.Exists(string.Concat(Str_CopyTracksTo, lst_Imported.Items[lst_Imported.SelectedIndex])))
+                {
+                    //  File.Copy(string.Concat(Str_CopyTracksFrom, lst_Imported.Items[lst_Imported.SelectedIndex]), string.Concat(Str_CopyTracksTo, lst_Imported.Items[lst_Imported.SelectedIndex]));
+                    File.Copy(string.Concat(Str_CopyTracksFrom, lst_Imported.Items[lst_Imported.SelectedIndex]), string.Concat(Str_CopyTracksTo, lst_Imported.Items[lst_Imported.SelectedIndex]));
+                }
+                lst_Imported.Items.RemoveAt(lst_Imported.SelectedIndex);
+            }
+        }
