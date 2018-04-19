@@ -51,4 +51,9 @@ namespace JukeBox
                     btn_ImportTracks.Enabled = false;
                 }
 
-            }
+            }  // Clears music files within the imported items listbox//
+        private void btn_ClearImportTracks_Click(object sender, EventArgs e)
+        {
+            lst_Imported.Items.Clear();
+            Str_CopyTracksTo = "";
+        }
