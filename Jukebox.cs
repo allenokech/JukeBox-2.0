@@ -64,3 +64,16 @@ namespace JukeBox
                 Close();
             }
         }
+        
+        // Loads music file and plays it
+        private void FileLoadAndPlay()
+        {
+            if ((!PossibleToPlay() ? false : !IsPlaying))
+            {
+                txt_Playing.Text = lst_Playlist.Items[0].ToString();
+                lst_Playlist.Items.Remove(lst_Playlist.Items[0]);
+                MediaPlayer.URL = string.Concat(StrApplicationMediaPath, "\\Tracks\\", txt_Playing.Text);
+                IsPlaying = true;
+                MediaPlayer.Ctlcontrols.play();
+            }
+        }
