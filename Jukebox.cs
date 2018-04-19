@@ -10,3 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
+
+namespace JukeBox
+{
+    public partial class Jukebox : Form
+    
