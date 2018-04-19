@@ -57,3 +57,24 @@ namespace JukeBox
             lst_Imported.Items.Clear();
             Str_CopyTracksTo = "";
         }
+        
+        // Allows user to copy tracks to specific genres//
+        private void btn_CopyToGenre_Click(object sender, EventArgs e)
+        {
+            RSave = true;
+            if (lst_Imported.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must Select an item to Copy.");
+            }
+            else
+            {      
+                lst_PresentGenreTracks.Items.Add(lst_Imported.Items[lst_Imported.SelectedIndex]);
+                Setup_Media_Library[Int_ShowGenreNumber].Items.Add(lst_Imported.Items[lst_Imported.SelectedIndex]);
+                if (!File.Exists(string.Concat(Str_CopyTracksTo, lst_Imported.Items[lst_Imported.SelectedIndex])))
+
+                {
+                    //   File.Copy(string.Concat(Str_CopyTracksFrom, lst_Imported.Items[lst_Imported.SelectedIndex]), string.Concat(Str_CopyTracksTo, lst_Imported.Items[lst_Imported.SelectedIndex]));
+                    File.Copy(string.Concat(Str_CopyTracksFrom, lst_Imported.Items[lst_Imported.SelectedIndex]), string.Concat(Str_CopyTracksTo, lst_Imported.Items[lst_Imported.SelectedIndex]));
+                }
+            }
+        }
