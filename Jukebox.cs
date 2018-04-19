@@ -15,3 +15,11 @@ namespace JukeBox
 {
     public partial class Jukebox : Form
     
+    public Jukebox()
+        {
+            InitializeComponent();
+        }
+    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new AboutForm()).ShowDialog();
+        }
