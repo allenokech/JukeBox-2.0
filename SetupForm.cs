@@ -181,6 +181,39 @@ namespace JukeBox
             }
         }
         
+        // Checks whether other genres use a specific track  // 
+        private bool IsUsed(string Track)
+        {
+            bool trigger;
+            int count = 1;
+            while (true)
+            {
+                if (count <= Int_SetupNumberofGenre)
+                {
+                    int digit1 = 1;
+                    while (digit1 <= Setup_Media_Library[count].Items.Count - 1)
+                    {
+                        if (!(Track == Setup_Media_Library[count].Items[digit1].ToString()))
+                        {
+                            digit1++;
+                        }
+                        else
+                        {
+                            trigger = true;
+                            return trigger;
+                        }
+                    }
+                    count++;
+                }
+                else
+                {
+                    trigger = false;
+                    break;
+                }
+            }
+            return trigger;
+        }
+        
         
         
         
