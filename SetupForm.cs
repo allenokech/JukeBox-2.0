@@ -110,3 +110,29 @@ namespace JukeBox
             }
             Close();
         }
+        
+        // Enables the user to add a genre//
+        private void btn_AddGenre_Click(object sender, EventArgs e)
+        {
+            string i;
+            RSave = true;
+            for (i = My_Dialogs.InputBox("Please enter the 'Genre Title'."); i == ""; i = My_Dialogs.InputBox("Please enter the 'Genre Title'."))
+            {
+                MessageBox.Show("You must give the 'Genre' a title!");
+            }
+            if (i != "")
+            {
+                Int_SetupNumberofGenre++;
+                Int_ShowGenreNumber = Int_SetupNumberofGenre;
+                if (Setup_Media_Library != null)
+                {
+                    Array.Resize<ListBox>(ref Setup_Media_Library, Int_SetupNumberofGenre + 1);
+                }
+                Setup_Media_Library[Int_SetupNumberofGenre - 1] = new ListBox();
+                Setup_Media_Library[Int_SetupNumberofGenre - 1].Items.Add(i);
+                AddToGList(Int_ShowGenreNumber);
+                btn_NextGenre.Enabled = false;
+                btn_PreviousGenre.Enabled = true;
+                btn_DeleteGenre.Enabled = true;
+            }
+        }
