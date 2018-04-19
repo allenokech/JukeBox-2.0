@@ -159,5 +159,28 @@ namespace JukeBox
             }
         }
         
+        // Allows user to switch to next genre // 
+        private void btn_NextGenre_Click(object sender, EventArgs e)
+        {
+            if (Int_ShowGenreNumber < Int_SetupNumberofGenre)
+            {
+                btn_PreviousGenre.Enabled = true;
+                Int_ShowGenreNumber++;
+                AddToGList(Int_ShowGenreNumber);
+            }
+        }
+
+        // Allows user to navigate to previous genre
+        private void btn_PreviousGenre_Click(object sender, EventArgs e)
+        {
+            if (Int_ShowGenreNumber > 0)
+            {
+                btn_NextGenre.Enabled = true;
+                Int_ShowGenreNumber--;
+                AddToGList(Int_ShowGenreNumber);
+            }
+        }
+        
+        
         
         
