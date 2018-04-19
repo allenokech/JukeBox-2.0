@@ -19,6 +19,8 @@ namespace JukeBox
         {
             InitializeComponent();
         }
+    
+    // Show About Dialog //
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new AboutForm()).ShowDialog();
