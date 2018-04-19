@@ -298,6 +298,38 @@ namespace JukeBox
             }
             return trigger;
         }
+        // Allows the user to cancel the process of altering tracks and genres
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            if (RSave)
+            {
+                if (MessageBox.Show(string.Concat("You have made changes to the configuration.", Environment.NewLine, Environment.NewLine, "                   Do you wish to save them?"), "Warning", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    btn_OK_Click(sender, e);
+                }
+            }
+            Close();
+        }
+
         
+        private void SetupForm_Load(object sender, EventArgs e)
+        {
+            if (Load_Media_Lists())
+            {
+                AddToGList(Int_ShowGenreNumber);
+                if (Int_SetupNumberofGenre > 0)
+                { // Enables buttons when there is more than one genre //
+                    btn_NextGenre.Enabled = true;
+                    btn_DeleteGenre.Enabled = true;
+                }
+            }
+            else
+            {
+                InitiateDValue();
+                AddToGList(Int_ShowGenreNumber);
+            }
+        }
+    }
+}
         
         
