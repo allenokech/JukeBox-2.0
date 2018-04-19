@@ -41,3 +41,26 @@ namespace JukeBox
             AddToGList(hozScroll_Genre.Value - 1);
             return true;
         }
+        
+        // Checks if the file is possible to play
+        private bool PossibleToPlay()
+        {
+            bool trigger;
+            trigger = (lst_Playlist.Items.Count <= 0 ? false : true);
+            return trigger;
+        }
+
+        // Messages when files fail to load
+        private void JukeBox_Shown(object sender, EventArgs e)
+        {
+            if (!Load_Media_Lists())
+            {
+                MessageBox.Show("Unable to load the 'Media Content'.");
+                InitiateDValue();
+            }
+            if (!Initailise())
+            {
+                MessageBox.Show("Unable to display the 'Media Content'.");
+                Close();
+            }
+        }
