@@ -77,3 +77,15 @@ namespace JukeBox
                 MediaPlayer.Ctlcontrols.play();
             }
         }
+        
+        // Initializes default values
+        private void InitiateDValue()
+        {
+            Int_NumberofGenre = 1;
+            if (Int_NumberofGenre > 1)
+            {
+                Media_Library = new ListBox[Int_NumberofGenre];
+            }
+            Media_Library[1] = new ListBox();
+            Media_Library[1].Items.Add("Genrel");
+        }
