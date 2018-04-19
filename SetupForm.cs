@@ -27,3 +27,28 @@ namespace JukeBox
         {
             InitializeComponent();
         }
+        
+        // Used to import tracks to selected genres//
+        private void btn_ImportTracks_Click(object sender, EventArgs e)
+        {   // Opens file browser to allow you to select files to input//
+            RSave = true;
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // Limits the user to ability to import certain music file formats//
+                foreach (string str in
+                    from s in Directory.EnumerateFiles(folderBrowserDialog1.SelectedPath, "*.*", SearchOption.AllDirectories)
+                    where (s.EndsWith(".mp3") || s.EndsWith(".wma") || s.EndsWith(".wav") || s.EndsWith(".MP3") || s.EndsWith(".WMA") ? true : s.EndsWith(".WAV"))
+                    select s)
+                {
+                    lst_Imported.Items.Add(str);
+                }
+                if (lst_Imported.Items.Count <= -1)
+                {
+                    btn_ImportTracks.Enabled = true;
+                }
+                else
+                {
+                    btn_ImportTracks.Enabled = false;
+                }
+
+            }
