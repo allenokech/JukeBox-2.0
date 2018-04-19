@@ -270,6 +270,34 @@ namespace JukeBox
             }
             return trigger;
         }
+        // Saves the track information within media textbox
+        private bool Save_Media_List()
+        {
+            bool trigger;
+            StreamWriter TextFileWriter = new StreamWriter(string.Concat(Setup_StrApplicationMediaPath, "\\Media\\Media.txt"));
+            try
+            {
+                TextFileWriter.WriteLine(Int_SetupNumberofGenre);
+                for (int i = 0; i < Int_SetupNumberofGenre; i++)
+                {
+                    TextFileWriter.WriteLine(Setup_Media_Library[i].Items.Count - 1);
+                    for (int j = 0; j < Setup_Media_Library[i].Items.Count; j++)
+                    {
+                        TextFileWriter.WriteLine(Setup_Media_Library[i].Items[j]);
+                    }
+                }
+                TextFileWriter.Close();
+                trigger = true;
+            }
+            finally
+            {
+                if (TextFileWriter != null)
+                {
+                    ((IDisposable)TextFileWriter).Dispose();
+                }
+            }
+            return trigger;
+        }
         
         
         
